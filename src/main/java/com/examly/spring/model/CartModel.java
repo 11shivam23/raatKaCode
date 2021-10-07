@@ -1,26 +1,17 @@
 package com.examly.spring.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="cart")
 public class CartModel {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="cart_id")
-    private String cartItemId;
+    private int cartItemId;
 
     @ManyToMany
     @JoinTable(
@@ -29,9 +20,6 @@ public class CartModel {
             inverseJoinColumns = @JoinColumn(name="product_id", referencedColumnName = "product_id")
     )
     private List<ProductModel> products;
-    
-    @Column(name="product_name")
-    private String productName;
 
     @Column(name="quantity")
     private int Quantity;
@@ -39,26 +27,15 @@ public class CartModel {
     @Column(name="price")
     private String price;
 
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user_id",referencedColumnName="user_id")
+    @OneToOne()
+    @JoinColumn(name="user_id")
     private UserModel user;
 
     public CartModel() {
-
-    }
-
-    public CartModel(
-            String cartItemId,
-            List<ProductModel> products,
-            int quantity,
-            String price
-            ) {
         super();
-
-        this.cartItemId=cartItemId;
-        this.products = products;
-        this.Quantity = quantity;
-        this.price = price;
+        this.products = new ArrayList<ProductModel>();
+        this.Quantity = 0;
+        this.price = "0";
     }
 
 
@@ -74,15 +51,17 @@ public class CartModel {
 
 
 
-    public List<ProductModel> getProductName() {
+    public List<ProductModel> getProducts() {
         return products;
     }
 
 
 
-    public void setProductName(List<ProductModel> products) {
+    public void setProducts(List<ProductModel> products) {
         this.products = products;
     }
+
+    public void addProduct(ProductModel product){ this.products.add(product); }
 
 
 

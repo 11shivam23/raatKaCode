@@ -1,6 +1,10 @@
 package com.examly.spring.services;
 
 import java.util.List;
+import java.util.Optional;
+
+import com.examly.spring.model.CartModel;
+import com.examly.spring.repository.CartModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,21 +20,32 @@ public class UserModelServices {
 	private UserModelRepository userModelRepository;
 	
 	@Autowired 
-	private LoginModelRepository loginModelRepository; 
+	private LoginModelRepository loginModelRepository;
+
+	@Autowired
+	private CartModelRepository cartModelRepository;
 		
 
 	public List<UserModel> getAll(){
 		return userModelRepository.findAll();
 	}
+
+	public Optional<UserModel> getUserById(int id) {
+		return userModelRepository.findByUserId(id);
+	}
 	
 	public boolean saveUserModel(UserModel user){
-			int userId = user.getUserId();
 			String email=user.getEmail();
 			String password=user.getPassword();
-			String mobileNumber=user.getMobileNumber();
-			if(!userModelRepository.existsByUserId(userId) && !userModelRepository.existsByEmail(email) && !userModelRepository.existsByMobileNumber(mobileNumber)){
+			Integer mobileNumber=user.getMobileNumber();
+			if(!userModelRepository.existsByEmail(email) && !userModelRepository.existsByMobileNumber(mobileNumber)){
+				CartModel cart = new CartModel();
+				cart.setUser(user);
+				user.setCart(cart);
 				userModelRepository.save(user);
-				
+				System.out.print("Yahan");
+				cartModelRepository.save(cart);
+				System.out.print("Wahan");
 				LoginModel login = new LoginModel(email,password);
 				loginModelRepository.save(login);
 				return true;

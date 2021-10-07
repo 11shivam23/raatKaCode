@@ -4,14 +4,17 @@ import com.examly.spring.model.CartModel;
 
 //import java.util.List;
 
+import com.examly.spring.model.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface CartModelRepository extends JpaRepository<CartModel,String>{
+public interface CartModelRepository extends JpaRepository<CartModel,Integer>{
 
-	void deleteById(String cartItemId);
+	CartModel getCartByUser(UserModel user);
+
+	void deleteById(Integer cartItemId);
 	
 //	public List<CartModel> getCartModelByUserId(int userId);
 }

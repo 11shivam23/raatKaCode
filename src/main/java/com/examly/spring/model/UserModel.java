@@ -1,22 +1,14 @@
 package com.examly.spring.model;
 
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="user")
 public class UserModel {
 	@Id
 	@Column(name="user_id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int userId;
 	
 	@Column(name="username")
@@ -29,36 +21,33 @@ public class UserModel {
 	private String password;
 	
 	@Column(name="mobile_number")
-	private String mobileNumber;
-	
-	
+	private Integer mobileNumber;
+
 	@Column(name="active")
 	private boolean active=true;
 	
 	@Column(name="role")
 	private String role="User";
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")   
+	@OneToOne(mappedBy = "user")
 	private CartModel cart;
 	
 
 //	@Column(name="order_list")
 //	private List<OrderModel> orderList;
-	
+
 	public UserModel() {
 		
 	}
 	
 	public UserModel(
-			int userId,
 			String email,
 			String password,
 			String username,
-			String mobileNumber
+			Integer mobileNumber
 			){
 		
 		super();
-		this.userId=userId;
 		this.email = email;
 		this.password = password;
 		this.username = username;
@@ -91,10 +80,10 @@ public class UserModel {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getMobileNumber() {
+	public Integer getMobileNumber() {
 		return mobileNumber;
 	}
-	public void setMobileNumber(String mobileNumber) {
+	public void setMobileNumber(Integer mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 	public boolean isActive() {

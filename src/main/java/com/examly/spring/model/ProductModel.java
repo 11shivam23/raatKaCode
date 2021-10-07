@@ -11,7 +11,7 @@ public class ProductModel {
 
 	@Id
 	@Column(name="product_id")
-	private int productId;
+	private String productId;
 	
 	@Column(name="image_url")
 	private String imageUrl;
@@ -33,8 +33,8 @@ public class ProductModel {
 		
 	}
 	
-	public ProductModel(int productId, String imageUrl, String productName, String price, String description,
-			String quantity) {
+	public ProductModel(String productId, String imageUrl, String productName, String price, String description,
+						String quantity) {
 		super();
 		this.productId = productId;
 		this.imageUrl = imageUrl;
@@ -45,11 +45,11 @@ public class ProductModel {
 	}
 
 
-	public int getProductId() {
+	public String getProductId() {
 		return productId;
 	}
 	
-	public void setProductId(int productId) {
+	public void setProductId(String productId) {
 		this.productId = productId;
 	}
 	public String getImageUrl() {

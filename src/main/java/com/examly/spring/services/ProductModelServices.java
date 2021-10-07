@@ -28,7 +28,7 @@ public class ProductModelServices {
 	}
 
 	public boolean saveProduct(ProductModel product) {
-		int productId = product.getProductId();
+		String productId = product.getProductId();
 		if(!productModelRepository.existsByProductId(productId)) {
 			productModelRepository.save(product);
 			return true;
