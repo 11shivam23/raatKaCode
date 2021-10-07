@@ -27,7 +27,7 @@ public class CartModel {
     @Column(name="price")
     private String price;
 
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
     private UserModel user;
 

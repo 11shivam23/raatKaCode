@@ -17,7 +17,7 @@ public interface UserModelRepository extends JpaRepository<UserModel,String>,Cru
 
 	public boolean existsByEmail(String email);
 
-	public boolean existsByMobileNumber(Integer mobileNumber);
+	public boolean existsByMobileNumber(String mobileNumber);
 
 	public boolean existsByUserId(int userId);
 	

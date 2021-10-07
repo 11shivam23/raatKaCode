@@ -37,15 +37,15 @@ public class UserModelServices {
 	public boolean saveUserModel(UserModel user){
 			String email=user.getEmail();
 			String password=user.getPassword();
-			Integer mobileNumber=user.getMobileNumber();
+			String mobileNumber=user.getMobileNumber();
 			if(!userModelRepository.existsByEmail(email) && !userModelRepository.existsByMobileNumber(mobileNumber)){
 				CartModel cart = new CartModel();
 				cart.setUser(user);
 				user.setCart(cart);
-				userModelRepository.save(user);
-				System.out.print("Yahan");
 				cartModelRepository.save(cart);
-				System.out.print("Wahan");
+				System.out.print("\n\n\nYahan\n\n");
+				userModelRepository.save(user);
+				System.out.print("\n\nWahan\n\n");
 				LoginModel login = new LoginModel(email,password);
 				loginModelRepository.save(login);
 				return true;

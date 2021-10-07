@@ -21,7 +21,7 @@ public class UserModel {
 	private String password;
 	
 	@Column(name="mobile_number")
-	private Integer mobileNumber;
+	private String mobileNumber;
 
 	@Column(name="active")
 	private boolean active=true;
@@ -29,7 +29,7 @@ public class UserModel {
 	@Column(name="role")
 	private String role="User";
 	
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	private CartModel cart;
 	
 
@@ -44,7 +44,7 @@ public class UserModel {
 			String email,
 			String password,
 			String username,
-			Integer mobileNumber
+			String mobileNumber
 			){
 		
 		super();
@@ -80,10 +80,10 @@ public class UserModel {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public Integer getMobileNumber() {
+	public String getMobileNumber() {
 		return mobileNumber;
 	}
-	public void setMobileNumber(Integer mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 	public boolean isActive() {

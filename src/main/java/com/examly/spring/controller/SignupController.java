@@ -23,7 +23,7 @@ public class SignupController {
 	@PostMapping(value="/signup")
 	public boolean saveUser(
 			@RequestParam("email") String email,
-			@RequestParam("mobileNumber") Integer mobileNumber,
+			@RequestParam("mobileNumber") String mobileNumber,
 			@RequestParam("password") String password,
 			@RequestParam("username") String username
 			){
