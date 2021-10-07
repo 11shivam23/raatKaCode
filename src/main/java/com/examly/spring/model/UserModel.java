@@ -32,7 +32,6 @@ public class UserModel {
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	private CartModel cart;
 	
-
 //	@Column(name="order_list")
 //	private List<OrderModel> orderList;
 

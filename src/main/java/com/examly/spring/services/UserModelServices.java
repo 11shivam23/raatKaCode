@@ -42,10 +42,7 @@ public class UserModelServices {
 				CartModel cart = new CartModel();
 				cart.setUser(user);
 				user.setCart(cart);
-				cartModelRepository.save(cart);
-				System.out.print("\n\n\nYahan\n\n");
 				userModelRepository.save(user);
-				System.out.print("\n\nWahan\n\n");
 				LoginModel login = new LoginModel(email,password);
 				loginModelRepository.save(login);
 				return true;
