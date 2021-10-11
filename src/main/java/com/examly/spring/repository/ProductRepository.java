@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.examly.spring.model.ProductModel;
 
-public interface ProductModelRepository extends JpaRepository<ProductModel,Integer>,CrudRepository<ProductModel,Integer> {
+public interface ProductRepository extends JpaRepository<ProductModel,Integer>,CrudRepository<ProductModel,Integer> {
 
 	boolean existsByProductId(int productId);
 

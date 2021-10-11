@@ -7,41 +7,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.examly.spring.model.ProductModel;
-import com.examly.spring.repository.ProductModelRepository;
+import com.examly.spring.repository.ProductRepository;
 
 @Service
-public class ProductModelServices {
+public class ProductServices {
 	
 	@Autowired
-	ProductModelRepository productModelRepository;
+    ProductRepository productRepository;
 
 	public List<ProductModel> getAllProducts() {
-		return productModelRepository.findAll();
+		return productRepository.findAll();
 	}
 
 	public Optional<ProductModel> getProductById(int id) {
-		return productModelRepository.findById(id);
+		return productRepository.findById(id);
 	}
 
 	public void editSave(ProductModel product, int id) {
-		ProductModel pr = productModelRepository.findByProductId(id);
+		ProductModel pr = productRepository.findByProductId(id);
 		pr.setDescription(product.getDescription());
 		pr.setImageUrl(product.getImageUrl());
 		pr.setPrice(product.getPrice());
 		pr.setProductName(product.getProductName());
-		productModelRepository.save(pr);
+		productRepository.save(pr);
 	}
 
 	public boolean saveProduct(ProductModel product) {
 		int productId = product.getProductId();
-		if(!productModelRepository.existsByProductId(productId)) {
-			productModelRepository.save(product);
+		if(!productRepository.existsByProductId(productId)) {
+			productRepository.save(product);
 			return true;
 		}
 		return false;
 	}
 
 	public void deleteProduct(int id) {
-		productModelRepository.deleteById(id);
+		productRepository.deleteById(id);
 	}
 }

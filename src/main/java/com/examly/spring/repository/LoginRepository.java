@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.examly.spring.model.LoginModel;
 
 @Repository
-public interface LoginModelRepository extends JpaRepository<LoginModel,String>{
+public interface LoginRepository extends JpaRepository<LoginModel,String>{
 
 	boolean existsByEmail(String email);
 

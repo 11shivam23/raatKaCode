@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface CartModelRepository extends JpaRepository<CartModel,Integer>{
+public interface CartRepository extends JpaRepository<CartModel,Integer>{
 
 	CartModel getCartByUser(UserModel user);
 

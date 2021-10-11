@@ -1,9 +1,11 @@
 package com.examly.spring.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name="products")
+@Table(name="product")
 public class ProductModel {
 
 	@Id
@@ -25,6 +27,9 @@ public class ProductModel {
 	
 	@Column(name="quantity")
 	private String quantity;
+
+	@OneToMany(mappedBy="product", cascade = CascadeType.ALL)
+	private Set<CartProductModel> cartProductModel = new HashSet<>();
 	
 	public ProductModel(){
 		String imageUrl;
@@ -94,4 +99,13 @@ public class ProductModel {
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
+
+	public Set<CartProductModel> getCartProduct() {
+		return cartProductModel;
+	}
+
+	public void setCartProduct(Set<CartProductModel> cartProductModel) {
+		this.cartProductModel = cartProductModel;
+	}
+
 }

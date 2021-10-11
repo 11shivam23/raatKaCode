@@ -9,7 +9,7 @@ import com.examly.spring.model.UserModel;
 import java.util.Optional;
 
 @Repository
-public interface UserModelRepository extends JpaRepository<UserModel,String>,CrudRepository<UserModel,String>{
+public interface UserRepository extends JpaRepository<UserModel,String>,CrudRepository<UserModel,String>{
 	
 	public boolean findCartIdByUserId(int userId);
 

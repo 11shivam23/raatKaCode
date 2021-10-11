@@ -5,20 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.examly.spring.model.UserModel;
 
-import com.examly.spring.services.UserModelServices;
+import com.examly.spring.services.UserServices;
 
 
 @RestController
 public class SignupController {
 	
 	@Autowired
-	UserModelServices userModelServices;
+    UserServices userServices;
 
 	@PostMapping(value="/signup")
 	public boolean saveUser(
@@ -32,7 +31,7 @@ public class SignupController {
 		user.setMobileNumber(mobileNumber);
 		user.setPassword(password);
 		user.setUsername(username);
-		return userModelServices.saveUserModel(user);
+		return userServices.saveUserModel(user);
 	}
 
 }

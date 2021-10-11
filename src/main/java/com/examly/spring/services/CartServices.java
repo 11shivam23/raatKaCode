@@ -3,36 +3,42 @@ package com.examly.spring.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.examly.spring.model.CartProductModel;
 import com.examly.spring.model.ProductModel;
-import com.examly.spring.model.UserModel;
-import com.examly.spring.repository.ProductModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.examly.spring.model.CartModel;
-import com.examly.spring.repository.CartModelRepository;
-
-import javax.persistence.criteria.CriteriaBuilder;
+import com.examly.spring.repository.CartRepository;
 
 @Service
-public class CartModelServices {
+public class CartServices {
 	
 	@Autowired
-	private CartModelRepository cartModelRepository;
+	private CartRepository cartRepository;
 
 	@Autowired
-	ProductModelServices productModelServices;
+	ProductServices productServices;
 
 	@Autowired
-	UserModelServices userModelServices;
+	private UserServices userServices;
+
+	@Autowired
+	private CartProductServices cartProductServices;
 
 	public boolean addProduct(ProductModel product, CartModel cart, int Quantity){
 		if(Integer.parseInt(product.getQuantity()) >= Quantity){
 			cart.setPrice(String.valueOf(Integer.parseInt(cart.getPrice()) + Integer.parseInt(product.getPrice())*Quantity));
-			cart.addProduct(product);
-			cart.addQuantity(Quantity);
-			System.out.println("\n\n\n" + cart.getQuantity() + "\n\n\n");
-			cartModelRepository.save(cart);
+			cart.setQuantity(cart.getQuantity()+Quantity);
+
+			CartProductModel cartProductModel = new CartProductModel();
+			cartProductModel.setProduct(product);
+			cartProductModel.setCart(cart);
+			cartProductModel.setQuantity(Quantity);
+			cartProductServices.saveCartProduct(cartProductModel);
+
+
+			cartRepository.save(cart);
 			return true;
 		}
 		else
@@ -44,12 +50,12 @@ public class CartModelServices {
 		CartModel cart;
 
 		try {
-			product = productModelServices.getProductById(Integer.parseInt(product_id)).get();
-			cart = userModelServices.getUserById(user_id).get().getCart();
+			product = productServices.getProductById(Integer.parseInt(product_id)).get();
+			cart = userServices.getUserById(user_id).get().getCart();
 			return addProduct(product, cart, Integer.parseInt(Quantity));
 		}
 		catch(Exception e){
-			System.out.println("No product or user found for given id");
+			System.out.println("No product or user found for given id"+e);
 			return false;
 		}
 	}
@@ -62,7 +68,7 @@ public class CartModelServices {
 	}
 
 	public void deleteItem(Integer cartItemId) {
-		cartModelRepository.deleteById(cartItemId);
+		cartRepository.deleteById(cartItemId);
 		
 	}
 }

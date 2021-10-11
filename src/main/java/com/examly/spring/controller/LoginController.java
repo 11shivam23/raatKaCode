@@ -6,16 +6,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.examly.spring.model.LoginModel;
-import com.examly.spring.services.LoginModelServices;
+import com.examly.spring.services.LoginServices;
 
 @RestController
 public class LoginController {
 	
 	@Autowired
-	LoginModelServices loginModelServices;
+    LoginServices loginServices;
 	
 	@PostMapping(value="/login")
 	boolean checkUser(@RequestBody LoginModel data) {
-		return loginModelServices.checkUsermodel(data);	
+		return loginServices.checkUsermodel(data);
 	}
 }

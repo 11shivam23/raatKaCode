@@ -4,47 +4,47 @@ import java.util.List;
 import java.util.Optional;
 
 import com.examly.spring.model.CartModel;
-import com.examly.spring.repository.CartModelRepository;
+import com.examly.spring.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.examly.spring.model.LoginModel;
 import com.examly.spring.model.UserModel;
-import com.examly.spring.repository.LoginModelRepository;
-import com.examly.spring.repository.UserModelRepository;
+import com.examly.spring.repository.LoginRepository;
+import com.examly.spring.repository.UserRepository;
 
 @Service
-public class UserModelServices {
+public class UserServices {
 	
 	@Autowired
-	private UserModelRepository userModelRepository;
+	private UserRepository userRepository;
 	
 	@Autowired 
-	private LoginModelRepository loginModelRepository;
+	private LoginRepository loginRepository;
 
 	@Autowired
-	private CartModelRepository cartModelRepository;
+	private CartRepository cartRepository;
 		
 
 	public List<UserModel> getAll(){
-		return userModelRepository.findAll();
+		return userRepository.findAll();
 	}
 
 	public Optional<UserModel> getUserById(int id) {
-		return userModelRepository.findByUserId(id);
+		return userRepository.findByUserId(id);
 	}
 	
 	public boolean saveUserModel(UserModel user){
 			String email=user.getEmail();
 			String password=user.getPassword();
 			String mobileNumber=user.getMobileNumber();
-			if(!userModelRepository.existsByEmail(email) && !userModelRepository.existsByMobileNumber(mobileNumber)){
+			if(!userRepository.existsByEmail(email) && !userRepository.existsByMobileNumber(mobileNumber)){
 				CartModel cart = new CartModel();
 				cart.setUser(user);
 				user.setCart(cart);
-				userModelRepository.save(user);
+				userRepository.save(user);
 				LoginModel login = new LoginModel(email,password);
-				loginModelRepository.save(login);
+				loginRepository.save(login);
 				return true;
 			}
 			return false;	
