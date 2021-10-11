@@ -37,9 +37,9 @@ public class ProductController {
 		return productModelServices.getProductById(id);
 	}
 	
-	@PutMapping(value="/admin/productEdit/{id}")
+	@PostMapping(value="/admin/productEdit/{id}")
 	public void productEditSave(@RequestBody ProductModel product, @PathVariable int id){
-		productModelServices.editSave(product);
+		productModelServices.editSave(product,id);
 	}
 	
 	@PostMapping(value="/admin/addProduct")
@@ -47,7 +47,7 @@ public class ProductController {
 		return productModelServices.saveProduct(product);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE,value="/admin/delete/{id}")
+	@PostMapping(value="/admin/delete/{id}")
 	public void productDelete(@PathVariable int id){
 		productModelServices.deleteProduct(id);
 	}

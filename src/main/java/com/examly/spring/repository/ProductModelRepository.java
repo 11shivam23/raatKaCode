@@ -9,6 +9,8 @@ import com.examly.spring.model.ProductModel;
 
 public interface ProductModelRepository extends JpaRepository<ProductModel,Integer>,CrudRepository<ProductModel,Integer> {
 
-	boolean existsByProductId(String productId);
+	boolean existsByProductId(int productId);
+
+	ProductModel findByProductId(int productId);
 
 }

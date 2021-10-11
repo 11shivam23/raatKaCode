@@ -16,21 +16,21 @@ public class CartController {
 	@Autowired
 	CartModelServices cartModelServices;
 
-	@PostMapping(value="/home/{userId}")
-	public void addToCart(
-			@RequestParam("product_id") String productId,
-			@RequestParam("quantity") String quantity,
-			@PathVariable int userId
+	@PostMapping(value="/home/{user_id}")
+	public boolean addToCart(
+			@RequestParam("product_id") String product_id,
+			@RequestParam("quantity") String Quantity,
+			@PathVariable("user_id") int user_id
 	){
-		cartModelServices.addProduct(productId, userId, quantity);
+		return cartModelServices.addProduct(product_id, Quantity, user_id);
 	}
 	
 	@GetMapping("/cart/{id}")
-	public List<CartModel> showCart(@PathVariable int userId){
-		return cartModelServices.getCartItems(userId);
+	public List<CartModel> showCart(@PathVariable int user_id){
+		return cartModelServices.getCartItems(user_id);
 	}
 	@PostMapping(value="/cart/delete/{id}")
-	public void deleteCartItem(@PathVariable String cartItemId) {
-		cartModelServices.deleteItem(Integer.parseInt(cartItemId));
+	public void deleteCartItem(@PathVariable String cart_item_id) {
+		cartModelServices.deleteItem(Integer.parseInt(cart_item_id));
 	}
 }

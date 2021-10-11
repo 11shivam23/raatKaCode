@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.examly.spring.model.ProductModel;
 import com.examly.spring.model.UserModel;
+import com.examly.spring.repository.ProductModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,24 +26,31 @@ public class CartModelServices {
 	@Autowired
 	UserModelServices userModelServices;
 
-
-	public void addProduct(ProductModel product, CartModel cart, int Quantity){
-		while(Quantity-- == 0)
+	public boolean addProduct(ProductModel product, CartModel cart, int Quantity){
+		if(Integer.parseInt(product.getQuantity()) >= Quantity){
+			cart.setPrice(String.valueOf(Integer.parseInt(cart.getPrice()) + Integer.parseInt(product.getPrice())*Quantity));
 			cart.addProduct(product);
-		cartModelRepository.save(cart);
+			cart.addQuantity(Quantity);
+			System.out.println("\n\n\n" + cart.getQuantity() + "\n\n\n");
+			cartModelRepository.save(cart);
+			return true;
+		}
+		else
+			return false;
 	}
 
-	public void addProduct(String productId, int userId, String Quantity) {
+	public boolean addProduct(String product_id,String Quantity, int user_id){
 		ProductModel product;
 		CartModel cart;
+
 		try {
-			product = productModelServices.getProductById(Integer.parseInt(productId)).get();
-			UserModel user = userModelServices.getUserById(userId).get();
-			cart = cartModelRepository.getCartByUser(user);
-			addProduct(product, cart, Integer.parseInt(Quantity));
+			product = productModelServices.getProductById(Integer.parseInt(product_id)).get();
+			cart = userModelServices.getUserById(user_id).get().getCart();
+			return addProduct(product, cart, Integer.parseInt(Quantity));
 		}
 		catch(Exception e){
 			System.out.println("No product or user found for given id");
+			return false;
 		}
 	}
 

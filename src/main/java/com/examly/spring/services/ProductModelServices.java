@@ -23,12 +23,17 @@ public class ProductModelServices {
 		return productModelRepository.findById(id);
 	}
 
-	public void editSave(ProductModel product) {
-		productModelRepository.save(product);	
+	public void editSave(ProductModel product, int id) {
+		ProductModel pr = productModelRepository.findByProductId(id);
+		pr.setDescription(product.getDescription());
+		pr.setImageUrl(product.getImageUrl());
+		pr.setPrice(product.getPrice());
+		pr.setProductName(product.getProductName());
+		productModelRepository.save(pr);
 	}
 
 	public boolean saveProduct(ProductModel product) {
-		String productId = product.getProductId();
+		int productId = product.getProductId();
 		if(!productModelRepository.existsByProductId(productId)) {
 			productModelRepository.save(product);
 			return true;
