@@ -25,6 +25,11 @@ public class CartProductModel {
     @Column(name="price")
     private String Price;
 
+
+    @Column(name="product_name")
+    private String productName;
+
+
     public CartProductModel() {
         int quantity=0;
     }
@@ -67,5 +72,13 @@ public class CartProductModel {
 
     public void setPrice(String price) {
         Price = price;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 }

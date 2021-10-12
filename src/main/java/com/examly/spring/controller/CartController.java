@@ -2,6 +2,7 @@ package com.examly.spring.controller;
 
 import java.util.List;
 
+import com.examly.spring.model.CartProductModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +25,8 @@ public class CartController {
 		return cartServices.addProduct(product_id, Quantity, user_id);
 	}
 	
-	@GetMapping("/cart/{id}")
-	public List<CartModel> showCart(@PathVariable int user_id){
+	@GetMapping("/cart/{user_id}")
+	public List<CartProductModel> showCart(@PathVariable int user_id){
 		return cartServices.getCartItems(user_id);
 	}
 	@PostMapping(value="/cart/delete/{id}")

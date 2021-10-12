@@ -17,7 +17,7 @@ public interface CartRepository extends JpaRepository<CartModel,Integer>{
 
 	void deleteById(Integer cart_item_id);
 
-	CartModel findByCartId(int cart_id);
+	CartModel findByUser(int userId);
 
 
 //	public List<CartModel> getCartModelByUserId(int userId);

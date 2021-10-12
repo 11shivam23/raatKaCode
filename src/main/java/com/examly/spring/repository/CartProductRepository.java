@@ -6,6 +6,8 @@ import com.examly.spring.model.ProductModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CartProductRepository extends JpaRepository<CartProductModel,Integer> {
     
@@ -13,5 +15,11 @@ public interface CartProductRepository extends JpaRepository<CartProductModel,In
 
     boolean existsByCart(CartModel cart);
 
+    boolean existsByProductAndCart(ProductModel product,CartModel cart);
+
     CartProductModel findByProductAndCart(ProductModel product, CartModel cart);
+
+    boolean findByCartAndProduct(ProductModel product, CartModel cart);
+
+//    List<CartProductModel> findByCartId(int cartId);
 }
