@@ -22,6 +22,8 @@ public class CartProductModel {
     @Column(name="quantity")
     private int quantity;
 
+    @Column(name="price")
+    private String Price;
 
     public CartProductModel() {
         int quantity=0;
@@ -57,5 +59,13 @@ public class CartProductModel {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getPrice() {
+        return Price;
+    }
+
+    public void setPrice(String price) {
+        Price = price;
     }
 }
