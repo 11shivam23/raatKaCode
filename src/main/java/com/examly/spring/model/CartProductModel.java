@@ -1,5 +1,7 @@
 package com.examly.spring.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,14 +23,6 @@ public class CartProductModel {
 
     @Column(name="quantity")
     private int quantity;
-
-    @Column(name="price")
-    private String Price;
-
-
-    @Column(name="product_name")
-    private String productName;
-
 
     public CartProductModel() {
         int quantity=0;
@@ -64,21 +58,5 @@ public class CartProductModel {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public String getPrice() {
-        return Price;
-    }
-
-    public void setPrice(String price) {
-        Price = price;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
     }
 }

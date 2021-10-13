@@ -30,11 +30,6 @@ public class ProductModel {
 	@Column(name="quantity")
 	private String quantity;
 
-
-
-	@OneToMany(mappedBy="product", cascade = CascadeType.ALL)
-	private List<CartProductModel> cartProductModel = new ArrayList<>();
-	
 	public ProductModel(){
 		String imageUrl;
 		String productName;
@@ -103,14 +98,4 @@ public class ProductModel {
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
-
-	public List<CartProductModel> getCartProductModel() {
-		return cartProductModel;
-	}
-
-	public void setCartProductModel(List<CartProductModel> cartProductModel) {
-		this.cartProductModel = cartProductModel;
-	}
-
-
 }

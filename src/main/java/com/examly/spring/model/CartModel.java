@@ -1,5 +1,7 @@
 package com.examly.spring.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,6 +29,7 @@ public class CartModel {
     private UserModel user;
 
     @OneToMany(mappedBy="cart",cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<CartProductModel> cartProductModel = new ArrayList<>();
 
     public CartModel() {

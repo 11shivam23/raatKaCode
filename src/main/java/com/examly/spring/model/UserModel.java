@@ -1,6 +1,8 @@
 package com.examly.spring.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -30,6 +32,7 @@ public class UserModel {
 	private String role="User";
 	
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	@JsonBackReference
 	private CartModel cart;
 	
 //	@Column(name="order_list")

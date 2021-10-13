@@ -37,8 +37,6 @@ public class CartServices {
 				cartProductModel.setProduct(product);
 				cartProductModel.setCart(cart);
 				cartProductModel.setQuantity(Quantity);
-				cartProductModel.setPrice(product.getPrice());
-				cartProductModel.setProductName(product.getProductName());
 			}
 			else{
 				cartProductModel = cartProductServices.findByProductCart(product,cart);
@@ -72,10 +70,9 @@ public class CartServices {
 	public List<CartProductModel> getCartItems(int userId) {
 
 		CartModel cartModel = userServices.getUserById(userId).get().getCart();
-		System.out.println("/n/n/n"+ cartProductServices.findByCartId(cartModel)+" "+cartProductServices.findByCartId(cartModel).getClass()+"/n/n/n");
+		List<CartProductModel> cart = cartProductServices.findByCartId(cartModel);
+		System.out.println("\n\n\n\n" + cart.size() + "\n\n\n\n");
 		return cartProductServices.findByCartId(cartModel);
-
-
 	}
 
 	public void deleteItem(int cartItemId) {
