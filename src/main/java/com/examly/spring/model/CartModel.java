@@ -1,6 +1,8 @@
 package com.examly.spring.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -25,7 +27,7 @@ public class CartModel {
     private UserModel user;
 
     @OneToMany(mappedBy="cart",cascade = CascadeType.ALL)
-    private Set<CartProductModel> cartProductModel = new HashSet<>();
+    private List<CartProductModel> cartProductModel = new ArrayList<>();
 
     public CartModel() {
         super();
@@ -64,6 +66,13 @@ public class CartModel {
         Quantity = quantity;
     }
 
+    public List<CartProductModel> getCartProductModel() {
+        return cartProductModel;
+    }
+
+    public void setCartProductModel(List<CartProductModel> cartProductModel) {
+        this.cartProductModel = cartProductModel;
+    }
 
 
 }

@@ -21,5 +21,12 @@ public interface CartProductRepository extends JpaRepository<CartProductModel,In
 
     boolean findByCartAndProduct(ProductModel product, CartModel cart);
 
+    List<CartProductModel> findByCart(int cartId);
+
+//    List<CartProductModel> getCartProductByCart(CartModel cartId);
+
+    List<CartProductModel> findAllByCart(CartModel cartId);
+
+
 //    List<CartProductModel> findByCartId(int cartId);
 }

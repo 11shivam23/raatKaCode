@@ -32,7 +32,6 @@ public class CartServices {
 			cart.setQuantity(cart.getQuantity()+Quantity);
 
 			CartProductModel cartProductModel;
-//			if(!cartProductServices.existsProduct(product) && !cartProductServices.existsCart(cart)) {
 			if(!cartProductServices.existsProductCart(product,cart)){
 				cartProductModel= new CartProductModel();
 				cartProductModel.setProduct(product);
@@ -69,17 +68,17 @@ public class CartServices {
 		}
 	}
 
+
 	public List<CartProductModel> getCartItems(int userId) {
 
-		CartModel cartModel = cartRepository.findByUser(userId);
-		int cartId = cartModel.getCartId();
+		CartModel cartModel = userServices.getUserById(userId).get().getCart();
+		System.out.println("/n/n/n"+ cartProductServices.findByCartId(cartModel)+" "+cartProductServices.findByCartId(cartModel).getClass()+"/n/n/n");
+		return cartProductServices.findByCartId(cartModel);
 
-		List<CartProductModel> cartProductModel = new ArrayList<>();
-//		cartProductServices.findByCartId(cartId).forEach(cartProductModel::add);
-		return cartProductModel;
+
 	}
 
-	public void deleteItem(Integer cartItemId) {
+	public void deleteItem(int cartItemId) {
 		cartRepository.deleteById(cartItemId);
 		
 	}

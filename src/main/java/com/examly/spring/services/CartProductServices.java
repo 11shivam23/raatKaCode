@@ -40,6 +40,15 @@ public class CartProductServices {
         return cartProductRepository.findByCartAndProduct(product,cart);
     }
 
+    public List<CartProductModel> findByCartId(CartModel cartId) {
+        return cartProductRepository.findAllByCart(cartId);
+    }
+//
+//    public List<CartProductModel> findAll(int cartId) {
+//        return cartProductRepository.findAllByCart(cartId);
+//    }
+
+
 //    public List<CartProductModel> findByCartId(int cartId) {
 //        return cartProductRepository.findByCartId(cartId);
 //    }

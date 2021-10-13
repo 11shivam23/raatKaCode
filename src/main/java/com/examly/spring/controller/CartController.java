@@ -29,6 +29,8 @@ public class CartController {
 	public List<CartProductModel> showCart(@PathVariable int user_id){
 		return cartServices.getCartItems(user_id);
 	}
+
+
 	@PostMapping(value="/cart/delete/{id}")
 	public void deleteCartItem(@PathVariable String cart_item_id) {
 		cartServices.deleteItem(Integer.parseInt(cart_item_id));
