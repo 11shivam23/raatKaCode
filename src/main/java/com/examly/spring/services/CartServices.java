@@ -34,9 +34,9 @@ public class CartServices {
 			CartProductModel cartProductModel;
 			if(!cartProductServices.existsProductCart(product,cart)){
 				cartProductModel= new CartProductModel();
-				cartProductModel.setProduct(product);
-				cartProductModel.setCart(cart);
-				cartProductModel.setQuantity(Quantity);
+				cartProductModel.setProduct(product)
+								.setCart(cart)
+								.setQuantity(Quantity);
 			}
 			else{
 				cartProductModel = cartProductServices.findByProductCart(product,cart);

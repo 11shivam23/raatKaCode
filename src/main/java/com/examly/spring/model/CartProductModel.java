@@ -32,31 +32,35 @@ public class CartProductModel {
         return id;
     }
 
-    public void setId(Integer id) {
+    public CartProductModel setId(Integer id) {
         this.id = id;
+        return this;
     }
 
     public CartModel getCart() {
         return cart;
     }
 
-    public void setCart(CartModel cart) {
+    public CartProductModel setCart(CartModel cart) {
         this.cart = cart;
+        return this;
     }
 
     public ProductModel getProduct() {
         return product;
     }
 
-    public void setProduct(ProductModel product) {
+    public CartProductModel setProduct(ProductModel product) {
         this.product = product;
+        return this;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public CartProductModel setQuantity(int quantity) {
         this.quantity = quantity;
+        return this;
     }
 }
