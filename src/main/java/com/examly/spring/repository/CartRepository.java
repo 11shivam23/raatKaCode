@@ -17,10 +17,6 @@ import java.util.Optional;
 @Repository
 public interface CartRepository extends JpaRepository<CartModel,Integer>{
 
-//	CartModel getCartByUser(UserModel user);
-
 	void deleteById(Integer cart_item_id);
-
-//	CartModel findByUser(int userId);
 
 }
