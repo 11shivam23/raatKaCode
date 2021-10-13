@@ -12,10 +12,10 @@ public class LoginServices {
 	@Autowired 
 	private LoginRepository loginRepository;
 
-	public boolean checkUsermodel(LoginModel login) {
+	public boolean checkUserModel(LoginModel login) {
 		String email = login.getEmail();
 		String password = login.getPassword();
-		if(loginRepository.existsByEmail(email) && loginRepository.existsByPassword(password))
+		if(loginRepository.existsByEmailAndPassword(email,password))
 			return true;
 		return false;
 	}

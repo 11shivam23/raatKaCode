@@ -1,7 +1,5 @@
 package com.examly.spring.repository;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,4 +11,5 @@ public interface ProductRepository extends JpaRepository<ProductModel,Integer>,C
 
 	ProductModel findByProductId(int productId);
 
+    ProductModel getProductByProductId(int productId);
 }

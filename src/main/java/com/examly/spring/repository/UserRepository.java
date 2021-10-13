@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<UserModel,String>,CrudRepository<UserModel,String>{
 	
-	public boolean findCartIdByUserId(int userId);
+//	public boolean findCartIdByUserId(int userId);
 
 	public Optional<UserModel> findByUserId(int id);
 
@@ -19,6 +19,6 @@ public interface UserRepository extends JpaRepository<UserModel,String>,CrudRepo
 
 	public boolean existsByMobileNumber(String mobileNumber);
 
-	public boolean existsByUserId(int userId);
-	
+//	public boolean existsByUserId(int userId);
+
 }

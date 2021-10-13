@@ -1,8 +1,7 @@
 package com.examly.spring.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
+
 
 @Entity
 @Table(name="cart_product")
@@ -13,11 +12,11 @@ public class CartProductModel {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="cart_id")
     private CartModel cart;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="product_id")
     private ProductModel product;
 

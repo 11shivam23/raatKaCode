@@ -16,6 +16,6 @@ public class LoginController {
 	
 	@PostMapping(value="/login")
 	boolean checkUser(@RequestBody LoginModel data) {
-		return loginServices.checkUsermodel(data);
+		return loginServices.checkUserModel(data);
 	}
 }

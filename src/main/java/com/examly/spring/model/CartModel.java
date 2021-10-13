@@ -3,9 +3,8 @@ package com.examly.spring.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 import javax.persistence.*;
 
@@ -24,7 +23,7 @@ public class CartModel {
     @Column(name="price")
     private String price;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name="user_id")
     private UserModel user;
 

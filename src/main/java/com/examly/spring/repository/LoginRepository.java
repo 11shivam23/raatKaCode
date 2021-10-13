@@ -8,10 +8,5 @@ import com.examly.spring.model.LoginModel;
 @Repository
 public interface LoginRepository extends JpaRepository<LoginModel,String>{
 
-	boolean existsByEmail(String email);
-
-	boolean existsByPassword(String password);
-
-	
-	
+	boolean existsByEmailAndPassword(String email, String password);
 }

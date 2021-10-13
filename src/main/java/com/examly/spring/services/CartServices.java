@@ -2,6 +2,7 @@ package com.examly.spring.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.examly.spring.model.CartProductModel;
 import com.examly.spring.model.ProductModel;
@@ -11,7 +12,10 @@ import org.springframework.stereotype.Service;
 import com.examly.spring.model.CartModel;
 import com.examly.spring.repository.CartRepository;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class CartServices {
 	
 	@Autowired
@@ -70,15 +74,20 @@ public class CartServices {
 	public List<CartProductModel> getCartItems(int userId) {
 
 		CartModel cartModel = userServices.getUserById(userId).get().getCart();
-		List<CartProductModel> cart = cartProductServices.findByCartId(cartModel);
-		System.out.println("\n\n\n\n" + cart.size() + "\n\n\n\n");
 		return cartProductServices.findByCartId(cartModel);
 	}
 
-	public void deleteItem(int cartItemId) {
-		cartRepository.deleteById(cartItemId);
-		
+	public void deleteItem(int userId,int productId) {
+		CartModel cartModel = userServices.getUserById(userId).get().getCart();
+		ProductModel productModel = productServices.getProductByProductId(productId);
+
+		CartProductModel cartProductModel = cartProductServices.findByCartAndProduct(cartModel,productModel);
+
+		int cartProductId = cartProductModel.getId();
+
+		cartProductServices.removeProduct(cartModel,cartProductId);
 	}
+
 }
 	
 
