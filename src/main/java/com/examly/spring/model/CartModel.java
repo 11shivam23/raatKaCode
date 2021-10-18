@@ -7,6 +7,7 @@ import java.util.List;
 
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 
 @Entity
 @Table(name="cart")
@@ -27,7 +28,7 @@ public class CartModel {
     @JoinColumn(name="user_id")
     private UserModel user;
 
-    @OneToMany(mappedBy="cart",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="cart",orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonBackReference
     private List<CartProductModel> cartProductModel = new ArrayList<>();
 
@@ -76,5 +77,8 @@ public class CartModel {
         this.cartProductModel = cartProductModel;
     }
 
-
+    @Transactional
+    public void removeProduct(ProductModel product) {
+        cartProductModel.removeIf(cartProduct -> cartProduct.getProduct() == product.getProductId());
+    }
 }

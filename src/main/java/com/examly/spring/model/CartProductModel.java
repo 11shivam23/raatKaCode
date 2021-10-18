@@ -12,13 +12,11 @@ public class CartProductModel {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="cart_id")
-    private CartModel cart;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="product_id")
-    private ProductModel product;
+    @Column(name="cart_id")
+    private int cart;
+    
+    @Column(name = "product_id")
+    private int product;
 
     @Column(name="quantity")
     private int quantity;
@@ -36,20 +34,20 @@ public class CartProductModel {
         return this;
     }
 
-    public CartModel getCart() {
+    public int getCart() {
         return cart;
     }
 
-    public CartProductModel setCart(CartModel cart) {
+    public CartProductModel setCart(int cart) {
         this.cart = cart;
         return this;
     }
 
-    public ProductModel getProduct() {
+    public int getProduct() {
         return product;
     }
 
-    public CartProductModel setProduct(ProductModel product) {
+    public CartProductModel setProduct(int product) {
         this.product = product;
         return this;
     }
