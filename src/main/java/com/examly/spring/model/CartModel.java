@@ -42,8 +42,9 @@ public class CartModel {
         return user;
     }
 
-    public void setUser(UserModel user) {
+    public CartModel setUser(UserModel user) {
         this.user = user;
+        return this;
     }
 
 
@@ -51,30 +52,29 @@ public class CartModel {
         return price;
     }
 
-    public void setPrice(String price) {
+    public CartModel setPrice(String price) {
         this.price = price;
+        return this;
     }
 
     public int getCartId() { return cartId; }
-
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
-    }
 
     public int getQuantity() {
         return Quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public CartModel setQuantity(int quantity) {
         Quantity = quantity;
+        return this;
     }
 
     public List<CartProductModel> getCartProductModel() {
         return cartProductModel;
     }
 
-    public void setCartProductModel(List<CartProductModel> cartProductModel) {
+    public CartModel setCartProductModel(List<CartProductModel> cartProductModel) {
         this.cartProductModel = cartProductModel;
+        return this;
     }
 
     @Transactional

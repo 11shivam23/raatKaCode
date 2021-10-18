@@ -113,4 +113,13 @@ public class CartServices {
 		deleteItem(cart, product);
 	}
 
+	private void deleteCartItems(int userId){
+		getCartItems(userId).forEach(item -> deleteItem(userId, item.getProduct().getProductId()));
+	}
+
+	public void flush(CartModel cart){
+		cart.setPrice("0")
+				.setQuantity(0);
+		deleteCartItems(cart.getUser().getUserId());
+	}
 }
