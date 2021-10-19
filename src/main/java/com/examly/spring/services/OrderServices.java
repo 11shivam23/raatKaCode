@@ -59,4 +59,8 @@ public class OrderServices {
 	public List<OrderModel> showOrders(int userId) {
 		return orderRepository.findAllByUserId(userId);
 	}
+
+	public List<OrderModel> showAllOrders() {
+		return orderRepository.findAll();
+	}
 }

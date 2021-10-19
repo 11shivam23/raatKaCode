@@ -17,7 +17,7 @@ public class OrderController {
 	@Autowired
 	OrderServices orderModelServices;
 
-	@GetMapping("/orders")
+	@PostMapping("/orders")
 	List<OrderModel> getUserProducts(@RequestParam("user_id") int userId){
 		return orderModelServices.showOrders(userId);
 	}
@@ -33,5 +33,10 @@ public class OrderController {
 			@RequestParam("product_id") int productId
 	){
 		orderModelServices.orderPlace(userId, productId);
+	}
+
+	@GetMapping("/admin/orders")
+	List<OrderModel> getUserProduct(){
+		return orderModelServices.showAllOrders();
 	}
 }

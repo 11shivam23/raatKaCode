@@ -13,10 +13,10 @@ public class OrderModel {
 	@Column(name="user_id")
 	private int userId;
 
-	@Column(name="product_id")
+	@Column(name="product_name")
  	private String productName;
 
-	@Column(name="qunatity")
+	@Column(name="quantity")
 	private Integer quantity;
 
 	@Column(name="total_price")
