@@ -37,16 +37,5 @@ public class CartProductServices {
         return cartProductRepository.findAllByCart(cartId.getCartId());
     }
 
-    public CartProductModel findByCartAndProduct(CartModel cartModel, ProductModel productModel) {
-        return cartProductRepository.findByCartAndProduct(cartModel.getCartId(), productModel.getProductId());
-    }
-
-//    public void removeProduct(CartModel cartModel, int cartProductId) {
-//        List<CartProductModel> cartProductModelList = cartModel.getCartProductModel();
-//        cartProductModelList.removeIf(c -> c.getId().equals(cartProductId));
-//        cartModel.setCartProductModel(cartProductModelList);
-//        cartRepository.save(cartModel);
-//    }
-
 
 }
